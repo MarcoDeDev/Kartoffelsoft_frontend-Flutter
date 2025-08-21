@@ -2,15 +2,25 @@
 
 Hofladen Mangement System - Frontend
 
-## Getting Started
+### Models
+* models.abteilung
+* models.artikel
+* models.bestellung
+* models.grosskunde
+* models.lieferant
+* models.lieferung
+* models.mitarbeiter
+* models.teilderbestellung
+* models.teilderlieferung
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Services
+* services.abteilung_service
+* services.artikel_service
+* services.bestellung_service
+* services.grosskunde_service
+* services.lieferant_service
+* services.lieferung_service
+* services.mitarbeiter_service
+* services.teilderbestellung_service
+* services.teilderlieferung_service
