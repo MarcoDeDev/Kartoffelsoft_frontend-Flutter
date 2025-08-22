@@ -23,4 +23,13 @@ class TeilDerBestellung {
       preis: json['preis'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'artikelId': artikelId,
+      'bestellungId': bestellungId,
+      'menge': menge,
+      'preis': preis,
+    };
+  }
 }

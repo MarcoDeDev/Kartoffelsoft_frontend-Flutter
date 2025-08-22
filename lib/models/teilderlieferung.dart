@@ -23,4 +23,13 @@ class TeilDerLieferung {
       preis: json['preis'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'artikelId': artikelId,
+      'lieferungId': lieferungId,
+      'menge': menge,
+      'preis': preis,
+    };
+  }
 }

@@ -20,12 +20,23 @@ class Bestellung {
   factory Bestellung.fromJson(Map<String, dynamic> json) {
     return Bestellung(
       id: json['id'] as int,
-      grossKundeId: json['grossKundeId'] as int,
+      grossKundeId: json['grossKundeId'] as int?,
       datum: DateTime.parse(json['datum'] as String),
       gesamterPreis: json['gesamterPreis'] as double,
       bezahlt: json['bezahlt'] as bool,
       zahlungArt: json['zahlungArt'] as String,
-      rabat: json['rabat'] as int,
+      rabat: json['rabat'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'grossKundeId': grossKundeId,
+      'datum': datum.toIso8601String(),
+      'gesamterPreis': gesamterPreis,
+      'bezahlt': bezahlt,
+      'zahlungArt': zahlungArt,
+      'rabat': rabat,
+    };
   }
 }

@@ -33,4 +33,17 @@ class Artikel {
       rabat: json['rabat'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'lieferantId': lieferantId,
+      'menge': menge,
+      'warenEinheit': warenEinheit,
+      'warenTyp': warenTyp,
+      'preisProEinheit': preisProEinheit,
+      'verdorbene': verdorbene,
+      'rabat': rabat,
+    };
+  }
 }

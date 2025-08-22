@@ -19,4 +19,12 @@ class Lieferung {
         gesamterPreis: json['gesamterPreis'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'datum': datum.toIso8601String(),
+      'lieferantId': lieferantId,
+      'gesamterPreis': gesamterPreis,
+    };
+  }
 }

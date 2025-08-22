@@ -20,4 +20,12 @@ class Mitarbeiter {
         abteilungId: json['abteilungId'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'vorname': vorname,
+      'nachname': nachname,
+      'abteilungId': abteilungId,
+    };
+  }
 }

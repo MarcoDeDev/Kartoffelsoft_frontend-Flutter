@@ -29,4 +29,16 @@ class Lieferant {
         telefon: json['telefon'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'firmaName': firmaName,
+      'strasse': strasse,
+      'plz': plz,
+      'ort': ort,
+      'emailAdresse': emailAdresse,
+      'telefon': telefon,
+    };
+  }
+
 }

@@ -33,4 +33,17 @@ class GrossKunde {
         telefon: json['telefon'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'vorname': vorname,
+      'nachname': nachname,
+      'firmaName': firmaName,
+      'strasse': strasse,
+      'plz': plz,
+      'ort': ort,
+      'emailAdresse': emailAdresse,
+      'telefon': telefon,
+    };
+  }
 }

@@ -16,5 +16,12 @@ class Abteilung {
       berechtigung: json['berechtigung'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'abteilungName': abteilungName,
+      'berechtigung': berechtigung,
+    };
+  }
 }
 
