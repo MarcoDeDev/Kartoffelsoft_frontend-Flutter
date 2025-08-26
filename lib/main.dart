@@ -1,4 +1,8 @@
+// lib/main.dart
+
 import 'package:flutter/material.dart';
+import 'package:kartofelsoft_frontend/screens/login_screen.dart';
+import 'package:kartofelsoft_frontend/screens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +14,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Kartoffelsoft'),
-        ),
-        body: const Center(
-          child: Text('Hallo, Welt!'),
-        ),
+      title: 'Kartoffelsoft',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      initialRoute: '/login', // Definiert die Startroute
+      routes: {
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegisterScreen(),
+        // Später hier die Hauptseite hinzufügen
+        // '/home': (context) => MainScreen(),
+      },
     );
   }
 }

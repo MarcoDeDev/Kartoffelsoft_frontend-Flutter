@@ -11,8 +11,8 @@ class MitarbeiterService {
     final response = await http.get(Uri.parse(_baseUrl));
 
     if (response.statusCode == 200) {
-      List<dynamic> mitarbeiterenJson = json.decode(response.body);
-      return mitarbeiterenJson.map((json) => Mitarbeiter.fromJson(json)).toList();
+      List<dynamic> mitarbeiternJson = json.decode(response.body);
+      return mitarbeiternJson.map((json) => Mitarbeiter.fromJson(json)).toList();
     }else {
       throw Exception('Failed to load mitarbeiteren');
     }
@@ -27,6 +27,26 @@ class MitarbeiterService {
       throw Exception('Failed to load mitarbeiter');
     }
   }
+
+  Future<Mitarbeiter> loginMitarbeiter(String username, String password) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return Mitarbeiter.fromJson(json.decode(response.body));
+    }else {
+      throw Exception('Login fehlgeschlagen. Bitte überprüfen Sie die Anmeldedaten.');
+    }
+  }
+
 
   Future<Mitarbeiter> createMitarbeiter(Mitarbeiter mitarbeiter) async {
     final response = await http.post(
