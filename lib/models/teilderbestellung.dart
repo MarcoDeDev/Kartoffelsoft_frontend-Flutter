@@ -17,8 +17,8 @@ class TeilDerBestellung {
   factory TeilDerBestellung.fromJson(Map<String, dynamic> json) {
     return TeilDerBestellung(
       id: json['id'] as int,
-      artikelId: json['artikelId'] as int,
-      bestellungId: json['bestellungId'] as int,
+      artikelId: json['artikel']['id'] as int,
+      bestellungId: json['bestellung']['id'] as int,
       menge: json['menge'] as int,
       preis: json['preis'] as double,
     );

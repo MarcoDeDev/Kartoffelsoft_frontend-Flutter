@@ -1,14 +1,17 @@
 // lib/screens/login_screen.dart
 
 import 'package:flutter/material.dart';
+import '../enums/role.dart';
 import '../services/mitarbeiter_service.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
 
   final _formKey = GlobalKey<FormState>();
   // Controller für die Textfelder
@@ -22,16 +25,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_formKey.currentState!.validate()) {
       try {
-        final username = _usernameController.text;
-        final password = _passwordController.text;
+        final mitarbeiter = await _mitarbeiterService.loginMitarbeiter(
+            _usernameController.text, _passwordController.text);
 
-        await _mitarbeiterService.loginMitarbeiter(username, password);
+        if (mitarbeiter.role == Role.ADMIN) {
+          Navigator.pushReplacementNamed(context, '/main');
+        } else if (mitarbeiter.role == Role.KASSIERER) {
+          Navigator.pushReplacementNamed(context, '/kasse_screen');
+        } else if (mitarbeiter.role == Role.LAGERARBEITER) {
+          Navigator.pushReplacementNamed(context, '/lager_screen');
+        } else if (mitarbeiter.role == Role.BUEROARBEITER) {
+          Navigator.pushReplacementNamed(context, '/main');
+        }
 
-        // TODO: Navigiere zur Hauptseite bei Erfolg
-        print('Login erfolgreich');
-      }
-      catch (e) {
-        print('Login fehlgeschlagen: $e');
+      } catch (e) {
+        // Fehlerbehandlung
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login fehlgeschlagen. Überprüfen Sie Ihre Daten.')),
+        );
       }
     }
   }

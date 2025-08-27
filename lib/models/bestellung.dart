@@ -20,7 +20,7 @@ class Bestellung {
   factory Bestellung.fromJson(Map<String, dynamic> json) {
     return Bestellung(
       id: json['id'] as int,
-      grossKundeId: json['grossKundeId'] as int?,
+      grossKundeId: json['grossKunde']['id'] as int?,
       datum: DateTime.parse(json['datum'] as String),
       gesamterPreis: json['gesamterPreis'] as double,
       bezahlt: json['bezahlt'] as bool,

@@ -15,7 +15,7 @@ class Lieferung {
     return Lieferung(
         id: json['id'] as int,
         datum: DateTime.parse(json['datum'] as String),
-        lieferantId: json['lieferantId'] as int,
+        lieferantId: json['lieferant']['id'] as int,
         gesamterPreis: json['gesamterPreis'] as double,
     );
   }

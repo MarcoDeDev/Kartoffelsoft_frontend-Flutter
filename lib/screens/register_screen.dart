@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 
 import '../models/mitarbeiter.dart';
 import '../services/mitarbeiter_service.dart';
+import '../enums/role.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  RegisterScreenState createState() => RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class RegisterScreenState extends State<RegisterScreen> {
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _vornameController = TextEditingController();
@@ -20,10 +23,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  String? _selectedRole;
+
   final MitarbeiterService _mitarbeiterService = MitarbeiterService();
 
   void _register() async{
-
     if (_formKey.currentState!.validate()) {
       try {
         final vorname = _vornameController.text;
@@ -32,23 +36,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
         final password = _passwordController.text;
         final username = _usernameController.text;
 
-        final Mitarbeiter mitarbeiter = Mitarbeiter(
-          // 'id' wird vom Backend generiert
-          id: 0,
-          vorname: vorname,
-          nachname: nachname,
-          abteilungId: abteilungId,
-          password: password,
-          username: username,
+        final Map<String, dynamic> requestBody = {
+          'vorname': vorname,
+          'nachname': nachname,
+          'username': username,
+          'password': password,
+          'role': _selectedRole,
+          'abteilung': {
+            'id': abteilungId,
+          },
+        };
+
+        await _mitarbeiterService.createMitarbeiter(requestBody);
+        print('Registrierung erfolgreich');
+
+        // Optional: Zeige eine Erfolgsmeldung an oder lösche die Felder
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Mitarbeiter erfolgreich registriert!')),
         );
 
-        await _mitarbeiterService.createMitarbeiter(mitarbeiter);
+        // Leere die Formularfelder nach erfolgreicher Registrierung
+        _vornameController.clear();
+        _nachnameController.clear();
+        _abteilungIdController.clear();
+        _usernameController.clear();
+        _passwordController.clear();
+        setState(() {
+          _selectedRole = null;
+        });
 
-        // TODO: Navigiere zur Login-Seite bei Erfolg
-        print('Registrierung erfolgreich');
-      }
-      catch (e) {
+      } catch (e) {
         print('Registrierung fehlgeschlagen: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Registrierung fehlgeschlagen: $e')),
+        );
+
+
       }
     }
   }
@@ -66,15 +89,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return SingleChildScrollView(
+    return SingleChildScrollView( // SingleChildScrollView, um Scrollen zu ermöglichen
 
       child: Padding(
         padding: const EdgeInsets.all(16.00),
 
         child: Form(
           key: _formKey,
-          child: ListView( // ListView, um Scrollen zu ermöglichen
+          child: Column(
             children: [
+
               TextFormField(
                 controller: _vornameController,
                 decoration: InputDecoration(labelText: 'Vorname'),
@@ -105,6 +129,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(labelText: 'Passwort'),
                 obscureText: true,
                 validator: (value) => value!.isEmpty ? 'Bitte geben Sie Ihr Passwort ein.' : null,
+              ),
+
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(labelText: 'Rolle'),
+                value: _selectedRole,
+                items: Role.values.map((role) {
+                  return DropdownMenuItem<String>(
+                    value: role.name,
+                    child: Text(role.name),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedRole = newValue;
+                  });
+                },
+                validator: (value) => value == null ? 'Bitte eine Rolle auswählen.' : null,
               ),
 
               SizedBox(height: 20.0),

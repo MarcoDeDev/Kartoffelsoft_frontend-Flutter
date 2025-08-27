@@ -24,7 +24,7 @@ class Artikel {
     return Artikel(
       id: json['id'] as int,
       name: json['name'] as String,
-      lieferantId: json['lieferantId'] as int?,
+      lieferantId: json['lieferant']['id'] as int?,
       menge: json['menge'] as int?,
       warenEinheit: json['warenEinheit'] as String,
       warenTyp: json['warenTyp'] as String,

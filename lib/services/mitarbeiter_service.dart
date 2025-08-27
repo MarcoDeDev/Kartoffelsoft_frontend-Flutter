@@ -4,7 +4,7 @@ import '../models/mitarbeiter.dart';
 
 class MitarbeiterService {
 
-  final String _baseUrl = 'http://10.0.2.2:8080/api/mitarbeiter';
+  final String _baseUrl = 'http://localhost:8080/api/mitarbeiter';
 
 
   Future<List<Mitarbeiter>> fetchMitarbeitern() async {
@@ -41,20 +41,25 @@ class MitarbeiterService {
     );
 
     if (response.statusCode == 200) {
-      return Mitarbeiter.fromJson(json.decode(response.body));
-    }else {
-      throw Exception('Login fehlgeschlagen. Bitte überprüfen Sie die Anmeldedaten.');
+      // Überprüfe, ob der Body nicht leer ist
+      if (response.body.isNotEmpty) {
+        return Mitarbeiter.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Serverantwort war erfolgreich, aber der Body war leer.');
+      }
+    } else {
+      throw Exception('Login fehlgeschlagen. Statuscode: ${response.statusCode}');
     }
   }
 
 
-  Future<Mitarbeiter> createMitarbeiter(Mitarbeiter mitarbeiter) async {
+  Future<Mitarbeiter> createMitarbeiter(Map<String, dynamic> mitarbeiterData) async {
     final response = await http.post(
       Uri.parse(_baseUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(mitarbeiter.toJson()),
+      body: jsonEncode(mitarbeiterData),
     );
 
     if (response.statusCode == 201) {

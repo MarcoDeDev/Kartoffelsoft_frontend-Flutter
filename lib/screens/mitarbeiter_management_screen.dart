@@ -6,6 +6,8 @@ import '../services/mitarbeiter_service.dart';
 import 'register_screen.dart'; // Importiere die angepasste Registrierungsseite
 
 class MitarbeiterManagementScreen extends StatefulWidget {
+  const MitarbeiterManagementScreen({super.key});
+
   @override
   MitarbeiterManagementScreenState createState() => MitarbeiterManagementScreenState();
 }

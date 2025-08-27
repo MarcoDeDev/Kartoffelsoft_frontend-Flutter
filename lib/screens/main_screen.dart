@@ -5,6 +5,8 @@ import 'mitarbeiter_management_screen.dart';
 import 'mitarbeiter_search_screen.dart';
 
 class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
