@@ -123,6 +123,12 @@ class AbteilungManagementScreenState extends State<AbteilungManagementScreen> {
             child: const Text('Registrieren'),
           ),
 
+          const SizedBox(height: 20.0),
+          ElevatedButton(
+            onPressed: _clearForm,
+            child: const Text('Formular zurücksetzen'),
+          ),
+
         ],
       ),
     );

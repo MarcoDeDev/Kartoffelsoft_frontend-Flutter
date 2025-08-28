@@ -4,7 +4,7 @@ import '../models/lieferant.dart';
 
 class LieferantService {
 
-  final String _baseUrl = 'http://10.0.2.2:8080/api/lieferant';
+  final String _baseUrl = 'http://localhost:8080/api/lieferant';
 
 
   Future<List<Lieferant>> fetchLieferanten() async {

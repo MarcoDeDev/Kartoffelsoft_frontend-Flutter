@@ -1,14 +1,14 @@
-// lib/enums/role.dart
+// lib/enums/warenEinheit.dart
 
-enum Role {
-  ADMIN,
-  BUEROARBEITER,
-  KASSIERER,
-  LAGERARBEITER,
+enum WarenEinheit {
+  KISTE,
+  KG,
+  FLASCHEN,
+  STUCK,
 }
 
 // Fügt eine Erweiterung hinzu, um den Namen als String zu bekommen
-extension RoleExtension on Role {
+extension WarenEinheitExtension on WarenEinheit {
   String get name {
     return this.toString().split('.').last;
   }

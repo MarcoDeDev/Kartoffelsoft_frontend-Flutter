@@ -4,7 +4,7 @@ import '../models/artikel.dart';
 
 class ArtikelService {
 
-  final String _baseUrl = 'http://10.0.2.2:8080/api/artikel';
+  final String _baseUrl = 'http://localhost:8080/api/artikel';
 
 
   Future<List<Artikel>> fetchArtikeln() async {
@@ -28,18 +28,19 @@ class ArtikelService {
     }
   }
 
-  Future<Artikel> createArtikel(Artikel artikel) async {
+  Future<Artikel> createArtikel(Map<String, dynamic> artikelData) async {
     final response = await http.post(
-      Uri.parse(_baseUrl),
+      Uri.parse(('$_baseUrl/register')),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(artikel.toJson()),
+      body: jsonEncode(artikelData),
     );
 
     if (response.statusCode == 201) {
       return Artikel.fromJson(json.decode(response.body));
     }else {
+      print('Fehler beim Erstellen des Artikels: ${response.statusCode}, Body: ${response.body}');
       throw Exception('Failed to create artikel');
     }
   }
@@ -50,6 +51,4 @@ class ArtikelService {
       throw Exception('Failed to delete artikel');
     }
   }
-
-
 }

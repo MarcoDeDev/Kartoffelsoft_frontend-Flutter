@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:kartofelsoft_frontend/screens/abteilung_management_screen.dart';
+import 'package:kartofelsoft_frontend/screens/artikel_management_screen.dart';
 import 'mitarbeiter_management_screen.dart';
 import 'mitarbeiter_search_screen.dart';
 
@@ -39,16 +40,16 @@ class MainScreen extends StatelessWidget {
 
           children: [
             // Artikel-Tabs
-            Center(child: Text('Artikelverwaltung')),
+            ArtikelManagementScreen(),
             Center(child: Text('Artikelsuche')),
 
             // Kunden-Tabs
             Center(child: Text('Kundenverwaltung')),
             Center(child: Text('Kundensuche')),
 
-          // Abteilung-Tabs
-          AbteilungManagementScreen(),
-          Center(child: Text('Abteilungsuche')),
+            // Abteilung-Tabs
+            AbteilungManagementScreen(),
+            Center(child: Text('Abteilungsuche')),
 
             // Mitarbeiter-Tabs
             MitarbeiterManagementScreen(),

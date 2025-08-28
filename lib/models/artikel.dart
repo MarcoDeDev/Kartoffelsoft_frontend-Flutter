@@ -1,16 +1,20 @@
+import '../enums/waren_einheit.dart';
+import '../enums/waren_typ.dart';
+
 class Artikel {
 
-  final int id;
+  final int? id;
   final String name;
   final int? lieferantId;
   final int? menge;
-  final String warenEinheit;
-  final String warenTyp;
+  final WarenEinheit warenEinheit;
+  final WarenTyp warenTyp;
   final double preisProEinheit;
   final int? verdorbene;
   final int? rabat;
 
-  Artikel ({required this.id,
+  Artikel ({
+        this.id,
         required this.name,
         this.lieferantId,
         this.menge,
@@ -21,13 +25,14 @@ class Artikel {
         this.rabat});
 
   factory Artikel.fromJson(Map<String, dynamic> json) {
+
     return Artikel(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       name: json['name'] as String,
-      lieferantId: json['lieferant']['id'] as int?,
+      lieferantId: json['lieferantId'] as int?,
       menge: json['menge'] as int?,
-      warenEinheit: json['warenEinheit'] as String,
-      warenTyp: json['warenTyp'] as String,
+      warenEinheit: WarenEinheit.values.firstWhere((e) => e.name == json['warenEinheit']),
+      warenTyp: WarenTyp.values.firstWhere((e) => e.name ==json['warenTyp']),
       preisProEinheit: json['preisProEinheit'] as double,
       verdorbene: json['verdorbene'] as int?,
       rabat: json['rabat'] as int?,
@@ -39,8 +44,8 @@ class Artikel {
       'name': name,
       'lieferantId': lieferantId,
       'menge': menge,
-      'warenEinheit': warenEinheit,
-      'warenTyp': warenTyp,
+      'warenEinheit': warenEinheit.toString().split('.').last,
+      'warenTyp': warenTyp.toString().split('.').last,
       'preisProEinheit': preisProEinheit,
       'verdorbene': verdorbene,
       'rabat': rabat,
