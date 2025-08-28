@@ -4,7 +4,7 @@ import '../models/grosskunde.dart';
 
 class GrossKundeService {
 
-  final String _baseUrl = 'http://10.0.2.2:8080/api/grosskunde';
+  final String _baseUrl = 'http://localhost:8080/api/grosskunde';
 
 
   Future<List<GrossKunde>> fetchGrosskunden() async {
@@ -30,7 +30,7 @@ class GrossKundeService {
 
   Future<GrossKunde> createGrosskunde(GrossKunde grossKunde) async {
     final response = await http.post(
-      Uri.parse(_baseUrl),
+      Uri.parse('$_baseUrl/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

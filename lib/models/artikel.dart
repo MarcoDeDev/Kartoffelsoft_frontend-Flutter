@@ -29,7 +29,7 @@ class Artikel {
     return Artikel(
       id: json['id'] as int?,
       name: json['name'] as String,
-      lieferantId: json['lieferantId'] as int?,
+      lieferantId: json['lieferant'] != null ? json['lieferant']['id'] as int? : null,
       menge: json['menge'] as int?,
       warenEinheit: WarenEinheit.values.firstWhere((e) => e.name == json['warenEinheit']),
       warenTyp: WarenTyp.values.firstWhere((e) => e.name ==json['warenTyp']),
