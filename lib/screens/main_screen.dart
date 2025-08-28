@@ -1,6 +1,7 @@
 // lib/screens/main_screen.dart
 
 import 'package:flutter/material.dart';
+import 'package:kartofelsoft_frontend/screens/abteilung_management_screen.dart';
 import 'mitarbeiter_management_screen.dart';
 import 'mitarbeiter_search_screen.dart';
 
@@ -46,7 +47,7 @@ class MainScreen extends StatelessWidget {
             Center(child: Text('Kundensuche')),
 
           // Abteilung-Tabs
-          Center(child: Text('Abteilungverwaltung')),
+          AbteilungManagementScreen(),
           Center(child: Text('Abteilungsuche')),
 
             // Mitarbeiter-Tabs

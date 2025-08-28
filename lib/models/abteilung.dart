@@ -1,15 +1,16 @@
 class Abteilung {
 
-  final int id;
+  final int? id;
   final String abteilungName;
 
-  Abteilung ({required this.id,
+  Abteilung ({
+          this.id,
           required this.abteilungName,
   });
 
   factory Abteilung.fromJson(Map<String, dynamic> json) {
     return Abteilung(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       abteilungName: json['abteilungName'] as String,
     );
   }

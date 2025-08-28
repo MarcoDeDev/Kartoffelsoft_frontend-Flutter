@@ -4,7 +4,7 @@ import '../models/abteilung.dart';
 
 class AbteilungService {
 
-  final String _baseUrl = 'http://10.0.2.2:8080/api/abteilung';
+  final String _baseUrl = 'http://localhost:8080/api/abteilung';
 
 
   Future<List<Abteilung>> fetchAbteilungen() async {
@@ -32,7 +32,7 @@ class AbteilungService {
 
   Future<Abteilung> createAbteilung(Abteilung abteilung) async {
     final response = await http.post(
-      Uri.parse(_baseUrl),
+      Uri.parse('$_baseUrl/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -54,6 +54,4 @@ class AbteilungService {
       throw Exception('Failed to delete abteilung');
     }
   }
-
-
 }

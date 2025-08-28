@@ -13,6 +13,7 @@ class MitarbeiterManagementScreen extends StatefulWidget {
 }
 
 class MitarbeiterManagementScreenState extends State<MitarbeiterManagementScreen> {
+
   final MitarbeiterService _mitarbeiterService = MitarbeiterService();
   List<Mitarbeiter> _mitarbeiterListe = [];
 
@@ -53,6 +54,7 @@ class MitarbeiterManagementScreenState extends State<MitarbeiterManagementScreen
 
   Future<void> _registerMitarbeiter() async {
     if (_formKey.currentState!.validate()) {
+
       try {
         final abteilungId = int.tryParse(_abteilungIdController.text);
 
@@ -197,9 +199,11 @@ class MitarbeiterManagementScreenState extends State<MitarbeiterManagementScreen
   }
 
   Widget _buildMitarbeiterTable() {
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
+
         columns: const <DataColumn>[
           DataColumn(label: Text('ID')),
           DataColumn(label: Text('Vorname')),
@@ -208,7 +212,9 @@ class MitarbeiterManagementScreenState extends State<MitarbeiterManagementScreen
           DataColumn(label: Text('Benutzername')),
         ],
         rows: _mitarbeiterListe.map<DataRow>((mitarbeiter) {
+
           return DataRow(
+
             cells: <DataCell>[
               DataCell(Text(mitarbeiter.id.toString())),
               DataCell(Text(mitarbeiter.vorname)),

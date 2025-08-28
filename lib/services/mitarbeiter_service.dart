@@ -76,6 +76,4 @@ class MitarbeiterService {
       throw Exception('Failed to delete mitarbeiter');
     }
   }
-
-
 }
