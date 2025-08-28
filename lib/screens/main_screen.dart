@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartofelsoft_frontend/screens/abteilung_management_screen.dart';
 import 'package:kartofelsoft_frontend/screens/artikel_management_screen.dart';
+import 'lieferant_management_screen.dart';
 import 'mitarbeiter_management_screen.dart';
 import 'mitarbeiter_search_screen.dart';
 
@@ -14,7 +15,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return DefaultTabController(
-      length: 8,
+      length: 10,
 
       child: Scaffold(
 
@@ -24,12 +25,19 @@ class MainScreen extends StatelessWidget {
             isScrollable: true,
 
             tabs: [
+
               Tab(text: 'Artikelverwaltung'),
               Tab(text: 'Artikelsuche'),
+
+              Tab(text: 'Lieferantverwaltung'),
+              Tab(text: 'Lieferantsuche'),
+
               Tab(text: 'Kundenverwaltung'),
               Tab(text: 'Kundensuche'),
+
               Tab(text: 'Abteilungsverwaltung'),
               Tab(text: 'Abteilungssuche'),
+
               Tab(text: 'Mitarbeiterverwaltung'),
               Tab(text: 'Mitarbeitersuche'),
             ],
@@ -39,9 +47,14 @@ class MainScreen extends StatelessWidget {
         body: TabBarView(
 
           children: [
+
             // Artikel-Tabs
             ArtikelManagementScreen(),
             Center(child: Text('Artikelsuche')),
+
+            // Lieferant-Tabs
+            LieferantManagementScreen(),
+            Center(child: Text('Lieferantsuche')),
 
             // Kunden-Tabs
             Center(child: Text('Kundenverwaltung')),

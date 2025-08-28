@@ -30,7 +30,7 @@ class LieferantService {
 
   Future<Lieferant> createLieferant(Lieferant lieferant) async {
     final response = await http.post(
-      Uri.parse(_baseUrl),
+      Uri.parse(('$_baseUrl/register')),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -50,6 +50,4 @@ class LieferantService {
       throw Exception('Failed to delete lieferant');
     }
   }
-
-
 }

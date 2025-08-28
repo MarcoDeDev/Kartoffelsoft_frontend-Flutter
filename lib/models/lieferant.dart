@@ -1,6 +1,6 @@
 class Lieferant {
 
-  final int id;
+  final int? id;
   final String firmaName;
   final String strasse;
   final String plz;
@@ -9,7 +9,7 @@ class Lieferant {
   final String telefon;
 
   Lieferant ({
-          required this.id,
+          this.id,
           required this.firmaName,
           required this.strasse,
           required this.plz,
@@ -20,7 +20,7 @@ class Lieferant {
 
   factory Lieferant.fromJson(Map<String, dynamic> json) {
     return Lieferant(
-        id: json['id'] as int,
+        id: json['id'] as int?,
         firmaName: json['firmaName'] as String,
         strasse: json['strasse'] as String,
         plz: json['plz'] as String,
@@ -40,5 +40,4 @@ class Lieferant {
       'telefon': telefon,
     };
   }
-
 }
