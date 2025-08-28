@@ -55,7 +55,7 @@ class MitarbeiterService {
 
   Future<Mitarbeiter> createMitarbeiter(Map<String, dynamic> mitarbeiterData) async {
     final response = await http.post(
-      Uri.parse(_baseUrl),
+      Uri.parse('$_baseUrl/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -65,6 +65,7 @@ class MitarbeiterService {
     if (response.statusCode == 201) {
       return Mitarbeiter.fromJson(json.decode(response.body));
     }else {
+      print('Fehler beim Erstellen des Mitarbeiters: ${response.statusCode}, Body: ${response.body}');
       throw Exception('Failed to create mitarbeiter');
     }
   }

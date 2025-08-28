@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_screen.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'screens/kasse_screen.dart';
 import 'screens/lager_screen.dart';
 
@@ -32,6 +30,8 @@ void main() => runApp(MyApp());
 // }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

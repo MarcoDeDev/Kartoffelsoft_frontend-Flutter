@@ -26,10 +26,10 @@ class MainScreen extends StatelessWidget {
               Tab(text: 'Artikelsuche'),
               Tab(text: 'Kundenverwaltung'),
               Tab(text: 'Kundensuche'),
-              Tab(text: 'Mitarbeiterverwaltung'),
-              Tab(text: 'Mitarbeitersuche'),
               Tab(text: 'Abteilungsverwaltung'),
               Tab(text: 'Abteilungssuche'),
+              Tab(text: 'Mitarbeiterverwaltung'),
+              Tab(text: 'Mitarbeitersuche'),
             ],
           ),
         ),
@@ -44,6 +44,10 @@ class MainScreen extends StatelessWidget {
             // Kunden-Tabs
             Center(child: Text('Kundenverwaltung')),
             Center(child: Text('Kundensuche')),
+
+          // Abteilung-Tabs
+          Center(child: Text('Abteilungverwaltung')),
+          Center(child: Text('Abteilungsuche')),
 
             // Mitarbeiter-Tabs
             MitarbeiterManagementScreen(),
